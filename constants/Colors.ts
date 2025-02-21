@@ -4,23 +4,36 @@
  */
 
 const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
+const tintColorDark = '#4db8ff';
 
-export const Colors = {
+// Define the color scheme type with tabBackground
+type ColorScheme = {
+  text: string;
+  background: string;
+  tabBackground: string;
+  tint: string;
+  icon: string;
+  tabIconDefault: string;
+  tabIconSelected: string;
+};
+
+export const Colors: { light: ColorScheme; dark: ColorScheme } = {
   light: {
     text: '#11181C',
-    background: '#fff',
+    background: '#ffffff', // White background
+    tabBackground: '#f5f5f5', // Light gray for tabs
     tint: tintColorLight,
     icon: '#687076',
     tabIconDefault: '#687076',
     tabIconSelected: tintColorLight,
   },
   dark: {
-    text: '#ECEDEE',
-    background: '#151718',
+    text: '#ffffff', // Bright white for better contrast
+    background: '#121212', // Very dark gray, almost black
+    tabBackground: '#1E1E1E', // Slightly lighter dark background for tabs
     tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
+    icon: '#B0B0B0', // Light gray for icons
+    tabIconDefault: '#B0B0B0',
     tabIconSelected: tintColorDark,
   },
 };
