@@ -24,7 +24,7 @@ export default function CelebritiesScreen() {
   const [page, setPage] = useState(1);
 
   const router = useRouter();
-  const { theme } = useTheme();
+  const { theme, colorScheme } = useTheme();
 
   const loadPopularCelebrities = async () => {
     try {
@@ -43,14 +43,70 @@ export default function CelebritiesScreen() {
     loadPopularCelebrities();
   }, []);
 
-  const renderCelebrityItem = ({ item }: { item: Person }) => {
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      paddingHorizontal: 16,
+    },
+    screenTitle: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      marginVertical: 16,
+    },
+    loadingContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    errorContainer: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 16,
+    },
+    errorText: {
+      fontSize: 16,
+      textAlign: 'center',
+    },
+    celebrityCard: {
+      flexDirection: 'row',
+      marginBottom: 16,
+      alignItems: 'center',
+      backgroundColor: colorScheme === 'dark' ? '#2C2C2C' : '#f1f1f1',
+    },
+    celebrityImage: {
+      width: 100,
+      height: 150,
+      borderRadius: 8,
+      marginRight: 16,
+    },
+    celebrityInfo: {
+      flex: 1,
+      justifyContent: 'center',
+    },
+    celebrityName: {
+      fontSize: 18,
+      fontWeight: 'bold',
+    },
+    knownForText: {
+      fontSize: 14,
+      marginTop: 4,
+    },
+  });
+
+  
+  
+  const renderCelebrityItem = ({ item, index }: { item: Person, index: number }) => {
     const knownForTitles = (item.known_for || [])
       .map(work => work.title || work.name)
       .filter(Boolean)
       .join(', ');
 
+    const uniqueKey = `celebrity-${item.id}-${index}`;
+
     return (
       <TouchableOpacity 
+        key={uniqueKey}
         style={styles.celebrityCard}
         onPress={() => router.push({
           pathname: '/celebrities/[id]',
@@ -116,7 +172,7 @@ export default function CelebritiesScreen() {
       <FlatList
         data={celebrities}
         renderItem={renderCelebrityItem}
-        keyExtractor={(item) => item.id.toString()}
+        keyExtractor={(item, index) => `celebrity-${item.id}-${index}`}
         onEndReached={loadMoreCelebrities}
         onEndReachedThreshold={0.5}
         ListHeaderComponent={
@@ -129,52 +185,3 @@ export default function CelebritiesScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 16,
-  },
-  screenTitle: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginVertical: 16,
-  },
-  loadingContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  errorContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 16,
-  },
-  errorText: {
-    fontSize: 16,
-    textAlign: 'center',
-  },
-  celebrityCard: {
-    flexDirection: 'row',
-    marginBottom: 16,
-    alignItems: 'center',
-  },
-  celebrityImage: {
-    width: 100,
-    height: 150,
-    borderRadius: 8,
-    marginRight: 16,
-  },
-  celebrityInfo: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  celebrityName: {
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-  knownForText: {
-    fontSize: 14,
-    marginTop: 4,
-  },
-});

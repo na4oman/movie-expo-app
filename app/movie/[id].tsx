@@ -309,7 +309,8 @@ export default function MovieDetailsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
+    // backgroundColor: theme.colors.background,
   },
   centered: {
     justifyContent: 'center',

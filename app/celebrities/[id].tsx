@@ -30,7 +30,7 @@ export default function CelebrityDetailsScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const router = useRouter();
   const navigation = useNavigation();
-  const { theme } = useTheme();
+  const { theme, colorScheme } = useTheme();
 
   const [personDetails, setPersonDetails] = useState<PersonDetails | null>(null);
   const [movies, setMovies] = useState<PersonMovie[]>([]);
@@ -81,6 +81,7 @@ export default function CelebrityDetailsScreen() {
     container: {
       flex: 1,
       backgroundColor: theme?.background || '#FFFFFF',
+      // backgroundColor: colorScheme === 'dark' ? '#2C2C2C' : '#f1f1f1',
     },
     loadingContainer: {
       flex: 1,
@@ -173,7 +174,8 @@ export default function CelebrityDetailsScreen() {
       alignItems: 'center',
       marginBottom: 10,
       marginHorizontal: 15,
-      backgroundColor: theme?.cardBackground || '#F5F5F5',
+      // backgroundColor: theme?.cardBackground || '#F5F5F5',
+      backgroundColor: colorScheme === 'dark' ? '#2C2C2C' : '#f1f1f1',
       borderRadius: 10,
       padding: 10,
     },
@@ -217,7 +219,8 @@ export default function CelebrityDetailsScreen() {
     biographyContainer: {
       marginVertical: 10,
       padding: 15,
-      backgroundColor: theme?.cardBackground || '#F5F5F5',
+      // backgroundColor: theme?.cardBackground || '#F5F5F5',
+      backgroundColor: colorScheme === 'dark' ? '#2C2C2C' : '#f1f1f1',
       borderRadius: 10,
     },
     biographyHeader: {
