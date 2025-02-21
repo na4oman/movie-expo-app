@@ -179,7 +179,7 @@ export default function SearchScreen() {
       flex: 1,
       height: 50,
       color: theme?.text || '#000',
-      fontSize: 16,
+      fontSize: 14,
     },
     searchIcon: {
       marginRight: 10,
@@ -257,7 +257,7 @@ export default function SearchScreen() {
             style={styles.searchIcon} 
           />
           <TextInput
-            placeholder="Search movies, TV shows, and people"
+            placeholder="Search movies, TV shows, and people..."
             placeholderTextColor={theme?.secondaryText || '#666'}
             value={searchQuery}
             onChangeText={handleSearch}

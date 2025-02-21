@@ -15,6 +15,7 @@ import {
   fetchAiringTodayTVShows, 
   fetchPopularTVShows, 
   fetchTopRatedTVShows,
+  fetchTrendingTVShows,
   TVShow, 
   getImageUrl 
 } from '@/lib/api/tv-shows';
@@ -49,18 +50,19 @@ export default function TVShowsScreen() {
   useEffect(() => {
     const fetchTVShows = async () => {
       try {
-        const [airingToday, popular, topRated] = await Promise.all([
+        const [airingToday, popular, topRated, trending] = await Promise.all([
           fetchAiringTodayTVShows(),
           fetchPopularTVShows(),
-          fetchTopRatedTVShows(1)
+          fetchTopRatedTVShows(1),
+          fetchTrendingTVShows()
         ]);
 
         setTVShowSections([
-          // {
-          //   title: 'Airing Today',
-          //   data: airingToday.results,
-          //   type: 'horizontal'
-          // },
+          {
+            title: 'Trending TV Shows',
+            data: trending.results,
+            type: 'horizontal'
+          },
           {
             title: 'Popular TV Shows',
             data: popular.results,

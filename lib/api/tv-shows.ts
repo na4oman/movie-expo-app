@@ -516,3 +516,24 @@ export async function fetchTVShowEpisodeDetails(
     throw error;
   }
 }
+
+export async function fetchTrendingTVShows(page: number = 1): Promise<TVShowListResponse> {
+  try {
+    const response = await fetch(
+      `${BASE_URL}/trending/tv/day?language=en-US&page=${page}`,
+      {
+        method: 'GET',
+        headers: API_CONFIG.headers,
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('Error fetching trending TV shows:', error);
+    throw error;
+  }
+}
