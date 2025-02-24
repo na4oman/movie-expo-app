@@ -31,7 +31,7 @@ type TVShowSection = {
 
 export default function TVShowsScreen() {
   const router = useRouter();
-  const theme = useTheme();
+  const { theme } = useTheme();
 
   const [tvShowSections, setTVShowSections] = useState<TVShowSection[]>([]);
   const [loading, setLoading] = useState(true);
@@ -148,15 +148,15 @@ export default function TVShowsScreen() {
     }
   }, [topRatedState.currentPage, topRatedState.totalPages, topRatedState.isLoading]);
 
-  const styles = useMemo(() => StyleSheet.create({
+  const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: theme?.background || '#FFFFFF',
+      backgroundColor: theme.background
     },
     sectionTitle: {
       fontSize: 20,
       fontWeight: 'bold',
-      color: theme?.text || '#000',
+      color: theme.text,
       paddingHorizontal: 15,
       paddingTop: 15,
       marginBottom: 15
@@ -177,13 +177,13 @@ export default function TVShowsScreen() {
     horizontalListTitle: {
       marginTop: 5,
       fontSize: 12,
-      color: theme?.text || '#000',
+      color: theme.secondaryText,
       textAlign: 'center',
     },
     verticalListItem: {
       flexDirection: 'row',
       alignItems: 'center',
-      backgroundColor: theme?.cardBackground || '#F5F5F5',
+      backgroundColor: theme.cardBackground,
       marginHorizontal: 15,
       marginVertical: 5,
       borderRadius: 10,
@@ -202,64 +202,63 @@ export default function TVShowsScreen() {
     verticalListTitle: {
       fontSize: 16,
       fontWeight: 'bold',
-      color: theme?.text || '#000',
+      color: theme.text,
       marginBottom: 5,
     },
-    verticalListOverview: {
+    verticalListSubtitle: {
       fontSize: 14,
-      color: theme?.secondaryText || '#666',
-      marginBottom: 5,
+      color: theme.secondaryText,
     },
     ratingContainer: {
       flexDirection: 'row',
       alignItems: 'center',
+      marginTop: 5,
     },
     ratingText: {
       marginLeft: 5,
-      color: theme?.text || '#000',
+      fontSize: 12,
+      color: theme.secondaryText,
     },
     loadingContainer: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
+      backgroundColor: theme.background,
     },
     errorContainer: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
+      backgroundColor: theme.background,
     },
     errorText: {
-      color: theme?.error || 'red',
+      color: theme.error,
       fontSize: 16,
     }
-  }), [theme]);
+  })
 
   // Render individual TV show items
   const renderVerticalTVShowItem = (item: TVShow) => (
     <TouchableOpacity 
       style={styles.verticalListItem}
-      onPress={() => router.push({
-        pathname: '/tv-shows/[id]',
-        params: { id: item.id.toString() }
-      })}
+      onPress={() => router.push(`/tv-shows/${item.id}`)}
     >
       <Image 
-        source={{ uri: getImageUrl(item.poster_path) }}
-        style={styles.verticalListImage}
-        resizeMode="cover"
+        source={{ uri: getImageUrl(item.poster_path, 'w342') }} 
+        style={styles.verticalListImage} 
       />
-      <View style={styles.verticalListContent}>
+      <View style={{ flex: 1 }}>
         <Text style={styles.verticalListTitle} numberOfLines={2}>
           {item.name}
         </Text>
-        <Text style={styles.verticalListOverview} numberOfLines={3}>
+        <Text style={styles.verticalListSubtitle} numberOfLines={3}>
           {item.overview}
         </Text>
         <View style={styles.ratingContainer}>
           <FontAwesome 
             name="star" 
             size={16} 
-            color={theme?.primary || '#FFD700'} 
+            color={theme.primary} 
           />
           <Text style={styles.ratingText}>
             {item.vote_average.toFixed(1)}
@@ -273,7 +272,7 @@ export default function TVShowsScreen() {
   if (loading) {
     return (
       <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color={theme?.primary || '#007BFF'} />
+        <ActivityIndicator size="large" color={theme.primary} />
       </View>
     );
   }
@@ -299,13 +298,10 @@ export default function TVShowsScreen() {
               renderItem={({ item }) => (
                 <TouchableOpacity 
                   style={styles.horizontalListItem}
-                  onPress={() => router.push({
-                    pathname: '/tv-shows/[id]',
-                    params: { id: item.id.toString() }
-                  })}
+                  onPress={() => router.push(`/tv-shows/${item.id}`)}
                 >
                   <Image 
-                    source={{ uri: getImageUrl(item.poster_path) }}
+                    source={{ uri: getImageUrl(item.poster_path, 'w342') }}
                     style={styles.horizontalListImage}
                     resizeMode="cover"
                   />
@@ -334,7 +330,7 @@ export default function TVShowsScreen() {
                   <View style={styles.loadingContainer}>
                     <ActivityIndicator 
                       size="large" 
-                      color={theme?.primary || '#007BFF'} 
+                      color={theme.primary} 
                     />
                   </View>
                 ) : null

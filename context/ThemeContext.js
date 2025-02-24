@@ -10,6 +10,7 @@ const lightTheme = {
   error: '#FF3B30',
   success: '#34C759',
   border: '#C7C7CC',
+  cardBackground: '#F1F1F1',
 };
 
 const darkTheme = {
@@ -21,6 +22,7 @@ const darkTheme = {
   error: '#FF453A',
   success: '#30D158',
   border: '#38383A',
+  cardBackground: '#1E1E1E',
 };
 
 const ThemeContext = createContext()

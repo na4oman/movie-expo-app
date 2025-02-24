@@ -70,6 +70,129 @@ export default function MovieDetailsScreen() {
     fetchData();
   }, [id, theme, navigation]);
 
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      // backgroundColor: '#fff',
+      backgroundColor: theme.background,
+      // backgroundColor: theme === 'dark' ? '#2C2C2C' : '#f1f1f1',
+    },
+    centered: {
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    backdrop: {
+      width: '100%',
+      height: 200,
+      resizeMode: 'cover',
+    },
+    contentContainer: {
+      padding: 16,
+    },
+    title: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      marginBottom: 8,
+    },
+    overview: {
+      fontSize: 16,
+      // color: '#666',
+      marginBottom: 16,
+      lineHeight: 24,
+      color: theme.secondaryText,
+    },
+    detailsRow: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginBottom: 16,
+    },
+    releaseDate: {
+      fontSize: 14,
+      color: '#666',
+    },
+    rating: {
+      fontSize: 14,
+      color: '#666',
+    },
+    sectionTitle: {
+      fontSize: 18,
+      fontWeight: 'bold',
+      marginBottom: 12,
+      color: theme.text,
+    },
+    castList: {
+      marginBottom: 16,
+    },
+    castItemContainer: {
+      width: 100,
+    },
+    castImage: {
+      width: 100,
+      height: 150,
+      borderRadius: 8,
+      marginBottom: 4,
+    },
+    castName: {
+      fontSize: 12,
+      fontWeight: 'bold',
+      color: theme.text,
+    },
+    characterName: {
+      fontSize: 11,
+      // color: '#666',
+      color: theme.secondaryText,
+    },
+    trailerContainer: {
+      marginTop: 16,
+    },
+    crewContainer: {
+      marginTop: 16,
+    },
+    crewSectionContainer: {
+      // marginBottom: 20,
+    },
+    crewTypeContainer: {
+      // marginRight: 10,
+      marginBottom: 10,
+    },
+    item: {
+      // marginHorizontal: 30,
+      // marginBottom: 10,
+    },
+    crewTypeTitle: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      marginBottom: 10,
+      // color: '#333',
+      color: theme.text,
+    },
+    crewList: {
+      marginBottom: 10,
+    },
+    crewItemContainer: {
+      width: 100,
+      marginBottom: 10,
+    },
+    crewImage: {
+      width: 100,
+      height: 150,
+      borderRadius: 10,
+    },
+    crewName: {
+      marginTop: 5,
+      fontSize: 12,
+      fontWeight: 'bold',
+      textAlign: 'center',
+      color: theme.text,
+    },
+    crewJob: {
+      fontSize: 10,
+      // color: '#666',
+      color: theme.secondaryText,
+      textAlign: 'center',
+    },
+  });
+
   if (loading) {
     return (
       <View style={[styles.container, styles.centered]}>
@@ -306,115 +429,4 @@ export default function MovieDetailsScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // backgroundColor: '#fff',
-    // backgroundColor: theme.colors.background,
-  },
-  centered: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  backdrop: {
-    width: '100%',
-    height: 200,
-    resizeMode: 'cover',
-  },
-  contentContainer: {
-    padding: 16,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 8,
-  },
-  overview: {
-    fontSize: 16,
-    color: '#666',
-    marginBottom: 16,
-    lineHeight: 24,
-  },
-  detailsRow: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 16,
-  },
-  releaseDate: {
-    fontSize: 14,
-    color: '#666',
-  },
-  rating: {
-    fontSize: 14,
-    color: '#666',
-  },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 12,
-  },
-  castList: {
-    marginBottom: 16,
-  },
-  castItemContainer: {
-    width: 100,
-  },
-  castImage: {
-    width: 100,
-    height: 150,
-    borderRadius: 8,
-    marginBottom: 4,
-  },
-  castName: {
-    fontSize: 12,
-    fontWeight: 'bold',
-  },
-  characterName: {
-    fontSize: 11,
-    color: '#666',
-  },
-  trailerContainer: {
-    marginTop: 16,
-  },
-  crewContainer: {
-    marginTop: 16,
-  },
-  crewSectionContainer: {
-    // marginBottom: 20,
-  },
-  crewTypeContainer: {
-    // marginRight: 10,
-    marginBottom: 10,
-  },
-  // item: {
-  //   marginHorizontal: 30,
-  // },
-  crewTypeTitle: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 10,
-    color: '#333',
-  },
-  crewList: {
-    marginBottom: 10,
-  },
-  crewItemContainer: {
-    width: 100,
-  },
-  crewImage: {
-    width: 100,
-    height: 150,
-    borderRadius: 10,
-  },
-  crewName: {
-    marginTop: 5,
-    fontSize: 12,
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  crewJob: {
-    fontSize: 10,
-    color: '#666',
-    textAlign: 'center',
-  },
-});
+
