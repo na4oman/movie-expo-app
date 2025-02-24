@@ -160,39 +160,47 @@ export default function SearchScreen() {
   const styles = useMemo(() => StyleSheet.create({
     safeArea: {
       flex: 1,
-      backgroundColor: theme?.background || '#FFFFFF',
+      backgroundColor: theme.background
     },
     container: {
       flex: 1,
       paddingTop: 10, // Add some top padding
-      backgroundColor: theme?.background || '#FFFFFF',
+      backgroundColor: theme.background
     },
     searchInputContainer: {
       flexDirection: 'row',
       alignItems: 'center',
       margin: 15,
-      backgroundColor: theme?.cardBackground || '#F5F5F5',
+      backgroundColor: theme.cardBackground,
       borderRadius: 10,
       paddingHorizontal: 15,
     },
     searchInput: {
       flex: 1,
       height: 50,
-      color: theme?.text || '#000',
+      color: theme.text,
       fontSize: 14,
     },
     searchIcon: {
       marginRight: 10,
-      color: theme?.secondaryText || '#666',
+      color: theme.secondaryText,
     },
     searchItem: {
       flexDirection: 'row',
       alignItems: 'center',
       marginBottom: 10,
       marginHorizontal: 15,
-      backgroundColor: theme?.cardBackground || '#F5F5F5',
+      backgroundColor: theme.cardBackground,
       borderRadius: 10,
       padding: 10,
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
     },
     searchItemImage: {
       width: 100,
@@ -207,12 +215,12 @@ export default function SearchScreen() {
     searchItemTitle: {
       fontSize: 16,
       fontWeight: 'bold',
-      color: theme?.text || '#000',
+      color: theme.text,
       marginBottom: 5,
     },
     searchItemSubtitle: {
       fontSize: 14,
-      color: theme?.secondaryText || '#666',
+      color: theme.secondaryText,
       marginBottom: 5,
     },
     ratingContainer: {
@@ -221,7 +229,7 @@ export default function SearchScreen() {
     },
     ratingText: {
       marginLeft: 5,
-      color: theme?.text || '#000',
+      color: theme.text,
     },
     loadingContainer: {
       padding: 20,
@@ -243,7 +251,7 @@ export default function SearchScreen() {
     },
     emptyText: {
       fontSize: 16,
-      color: theme?.secondaryText || '#666',
+      color: theme.secondaryText,
     }
   }), [theme]);
 

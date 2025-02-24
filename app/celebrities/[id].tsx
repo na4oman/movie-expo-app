@@ -80,8 +80,7 @@ export default function CelebrityDetailsScreen() {
   const styles = useMemo(() => StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: theme?.background || '#FFFFFF',
-      // backgroundColor: colorScheme === 'dark' ? '#2C2C2C' : '#f1f1f1',
+      backgroundColor: theme.background
     },
     loadingContainer: {
       flex: 1,
@@ -129,11 +128,11 @@ export default function CelebrityDetailsScreen() {
     nameText: {
       fontSize: 22,
       fontWeight: 'bold',
-      color: theme?.text || '#000',
+      color: theme.text
     },
     subtitleText: {
       fontSize: 16,
-      color: theme?.secondaryText || '#666',
+      color: theme.secondaryText,
       marginBottom: 10,
     },
     tabContainer: {
@@ -152,20 +151,20 @@ export default function CelebrityDetailsScreen() {
       backgroundColor: theme?.primary || '#007BFF',
     },
     tabText: {
-      color: theme?.text || '#000',
+      color: theme.text,
       fontWeight: 'bold',
     },
     bioTitle: {
       fontSize: 18,
       fontWeight: 'bold',
-      color: theme?.text || '#000',
+      color: theme.text,
       marginTop: 15,
       marginBottom: 10,
       paddingHorizontal: 15,
     },
     bioText: {
       fontSize: 16,
-      color: theme?.secondaryText || '#666',
+      color: theme.secondaryText,
       lineHeight: 24,
       paddingHorizontal: 15,
     },
@@ -174,8 +173,7 @@ export default function CelebrityDetailsScreen() {
       alignItems: 'center',
       marginBottom: 10,
       marginHorizontal: 15,
-      // backgroundColor: theme?.cardBackground || '#F5F5F5',
-      backgroundColor: colorScheme === 'dark' ? '#2C2C2C' : '#f1f1f1',
+      backgroundColor: theme.cardBackground,
       borderRadius: 10,
       padding: 10,
     },
@@ -191,11 +189,11 @@ export default function CelebrityDetailsScreen() {
     creditTitle: {
       fontSize: 16,
       fontWeight: 'bold',
-      color: theme?.text || '#000',
+      color: theme.text,
     },
     creditSubtitle: {
       fontSize: 14,
-      color: theme?.secondaryText || '#666',
+      color: theme.secondaryText,
     },
     ratingContainer: {
       flexDirection: 'row',
@@ -204,7 +202,7 @@ export default function CelebrityDetailsScreen() {
     },
     ratingText: {
       marginLeft: 5,
-      color: theme?.text || '#000',
+      color: theme.text,
     },
     noCreditContainer: {
       flex: 1,
@@ -219,8 +217,7 @@ export default function CelebrityDetailsScreen() {
     biographyContainer: {
       marginVertical: 10,
       padding: 15,
-      // backgroundColor: theme?.cardBackground || '#F5F5F5',
-      backgroundColor: colorScheme === 'dark' ? '#2C2C2C' : '#f1f1f1',
+      backgroundColor: theme.cardBackground,
       borderRadius: 10,
     },
     biographyHeader: {
@@ -230,7 +227,7 @@ export default function CelebrityDetailsScreen() {
       marginBottom: 10,
     },
     biographyText: {
-      color: theme?.text || '#000',
+      color: theme.secondaryText,
       fontSize: 14,
       lineHeight: 20,
     },

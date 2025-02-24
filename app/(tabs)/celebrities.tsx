@@ -52,6 +52,7 @@ export default function CelebritiesScreen() {
       fontSize: 24,
       fontWeight: 'bold',
       marginVertical: 16,
+      color: theme.text
     },
     loadingContainer: {
       flex: 1,
@@ -72,7 +73,16 @@ export default function CelebritiesScreen() {
       flexDirection: 'row',
       marginBottom: 16,
       alignItems: 'center',
-      backgroundColor: colorScheme === 'dark' ? '#2C2C2C' : '#f1f1f1',
+      backgroundColor: theme.cardBackground,
+      borderRadius: 10,
+      shadowColor: '#000',
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 3.84,
+      elevation: 5,
     },
     celebrityImage: {
       width: 100,
@@ -83,10 +93,12 @@ export default function CelebritiesScreen() {
     celebrityInfo: {
       flex: 1,
       justifyContent: 'center',
+      color: theme.secondaryText
     },
     celebrityName: {
       fontSize: 18,
       fontWeight: 'bold',
+      color: theme.text
     },
     knownForText: {
       fontSize: 14,

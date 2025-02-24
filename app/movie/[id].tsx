@@ -73,9 +73,7 @@ export default function MovieDetailsScreen() {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      // backgroundColor: '#fff',
       backgroundColor: theme.background,
-      // backgroundColor: theme === 'dark' ? '#2C2C2C' : '#f1f1f1',
     },
     centered: {
       justifyContent: 'center',
@@ -96,7 +94,6 @@ export default function MovieDetailsScreen() {
     },
     overview: {
       fontSize: 16,
-      // color: '#666',
       marginBottom: 16,
       lineHeight: 24,
       color: theme.secondaryText,
@@ -108,11 +105,11 @@ export default function MovieDetailsScreen() {
     },
     releaseDate: {
       fontSize: 14,
-      color: '#666',
+      color: theme.secondaryText,
     },
     rating: {
       fontSize: 14,
-      color: '#666',
+      color: theme.secondaryText,
     },
     sectionTitle: {
       fontSize: 18,
@@ -139,7 +136,6 @@ export default function MovieDetailsScreen() {
     },
     characterName: {
       fontSize: 11,
-      // color: '#666',
       color: theme.secondaryText,
     },
     trailerContainer: {
@@ -149,10 +145,9 @@ export default function MovieDetailsScreen() {
       marginTop: 16,
     },
     crewSectionContainer: {
-      // marginBottom: 20,
+      marginBottom: 20,
     },
     crewTypeContainer: {
-      // marginRight: 10,
       marginBottom: 10,
     },
     item: {
@@ -163,7 +158,6 @@ export default function MovieDetailsScreen() {
       fontSize: 16,
       fontWeight: 'bold',
       marginBottom: 10,
-      // color: '#333',
       color: theme.text,
     },
     crewList: {
@@ -187,9 +181,9 @@ export default function MovieDetailsScreen() {
     },
     crewJob: {
       fontSize: 10,
-      // color: '#666',
       color: theme.secondaryText,
       textAlign: 'center',
+      marginBottom: 20
     },
   });
 

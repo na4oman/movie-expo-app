@@ -14,7 +14,7 @@ import { searchMovies } from '@/lib/api/movies'
 import { useTheme } from '@/context/ThemeContext'
 
 export default function MoviesScreen() {
-  const { colorScheme } = useTheme()
+  const { colorScheme, theme } = useTheme()
 
   const [movies, setMovies] = useState<Movie[]>([])
   const [loading, setLoading] = useState(true)
@@ -99,6 +99,7 @@ export default function MoviesScreen() {
   const getStyles = () => StyleSheet.create({
     container: {
       padding: 16,
+      backgroundColor: theme.background
     },
     centered: {
       flex: 1,
@@ -115,8 +116,8 @@ export default function MoviesScreen() {
     },
     movieCard: {
       flexDirection: 'row',
-      backgroundColor: colorScheme === 'dark' ? '#2C2C2C' : '#fff',
-      borderRadius: 8,
+      backgroundColor: theme.cardBackground,
+      borderRadius: 10,
       marginBottom: 16,
       shadowColor: '#000',
       shadowOffset: {
@@ -136,16 +137,17 @@ export default function MoviesScreen() {
     movieInfo: {
       flex: 1,
       padding: 12,
+      color: theme.secondaryText,
     },
     title: {
       fontSize: 16,
       fontWeight: 'bold',
       marginBottom: 8,
-      color: colorScheme === 'dark' ? 'white' : 'black',
+      color: theme.text,
     },
     overview: {
       fontSize: 14,
-      color: colorScheme === 'dark' ? '#B0B0B0' : '#666',
+      color: theme.secondaryText,
       marginBottom: 8,
     },
     details: {
@@ -154,11 +156,11 @@ export default function MoviesScreen() {
     },
     releaseDate: {
       fontSize: 14,
-      color: colorScheme === 'dark' ? '#B0B0B0' : '#666',
+      color: theme.secondaryText,
     },
     rating: {
       fontSize: 14,
-      color: colorScheme === 'dark' ? '#B0B0B0' : '#666',
+      color: theme.secondaryText,
     },
   });
 
