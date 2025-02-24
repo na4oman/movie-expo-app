@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useMemo } from 'react';
+import React, { useState, useCallback, useMemo, useEffect } from 'react';
 import { 
   View, 
   Text, 
@@ -34,130 +34,9 @@ export default function SearchScreen() {
   const [totalPages, setTotalPages] = useState(0);
   const [error, setError] = useState<string | null>(null);
 
-  const performSearch = useCallback(
-    debounce(async (query: string, currentPage: number = 1) => {
-      if (!query.trim()) {
-        setSearchResults([]);
-        return;
-      }
 
-      try {
-        setLoading(true);
-        setError(null);
 
-        const response = await fetchMultiSearch(query, currentPage);
-        
-        setSearchResults(currentPage === 1 
-          ? response.results 
-          : [...searchResults, ...response.results]
-        );
-        setPage(response.page);
-        setTotalPages(response.total_pages);
-      } catch (err) {
-        setError('Failed to perform search');
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
-    }, 500),
-    [searchResults]
-  );
-
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
-    performSearch(query, 1);
-  };
-
-  const handleLoadMore = () => {
-    if (page < totalPages && !loading) {
-      performSearch(searchQuery, page + 1);
-    }
-  };
-
-  const renderSearchItem = ({ item }: { item: MultiSearchResult }) => {
-    const getNavigationPath = () => {
-      switch (item.media_type) {
-        case 'movie': return '/movie/[id]';
-        case 'tv': return '/tv-shows/[id]';
-        case 'person': return '/celebrities/[id]';
-        default: 
-          console.warn(`Unknown media type: ${item.media_type}`);
-          return '/celebrities/[id]'; // Fallback to a valid route
-      }
-    };
-
-    const getTitle = () => {
-      switch (item.media_type) {
-        case 'movie': return item.title || 'Unknown Movie';
-        case 'tv': return item.name || 'Unknown TV Show';
-        case 'person': return item.name || 'Unknown Person';
-        default: return 'Unknown';
-      }
-    };
-
-    const getSubtitle = () => {
-      switch (item.media_type) {
-        case 'movie': 
-          return item.release_date 
-            ? `Movie • ${item.release_date.split('-')[0]}` 
-            : 'Movie';
-        case 'tv': 
-          return item.first_air_date 
-            ? `TV Show • ${item.first_air_date.split('-')[0]}` 
-            : 'TV Show';
-        case 'person': return 'Celebrity';
-        default: return '';
-      }
-    };
-
-    return (
-      <TouchableOpacity 
-        style={styles.searchItem}
-        onPress={() => router.push({
-          pathname: getNavigationPath(),
-          params: { id: item.id.toString() }
-        })}
-      >
-        <Image 
-          source={{ 
-            uri: item.poster_path 
-              ? getImageUrl(item.poster_path) 
-              : 'https://via.placeholder.com/342x513.png?text=No+Image' 
-          }}
-          style={styles.searchItemImage}
-          resizeMode="cover"
-        />
-        <View style={styles.searchItemDetails}>
-          <Text 
-            style={styles.searchItemTitle} 
-            numberOfLines={2}
-          >
-            {getTitle()}
-          </Text>
-          <Text 
-            style={styles.searchItemSubtitle}
-            numberOfLines={1}
-          >
-            {getSubtitle()}
-          </Text>
-          {item.vote_average !== undefined && (
-            <View style={styles.ratingContainer}>
-              <FontAwesome 
-                name="star" 
-                size={16} 
-                color={theme?.primary || '#FFD700'} 
-              />
-              <Text style={styles.ratingText}>
-                {item.vote_average.toFixed(1)}
-              </Text>
-            </View>
-          )}
-        </View>
-      </TouchableOpacity>
-    );
-  };
-
-  const styles = useMemo(() => StyleSheet.create({
+  const getStyles = () => StyleSheet.create({
     safeArea: {
       flex: 1,
       backgroundColor: theme.background
@@ -253,7 +132,140 @@ export default function SearchScreen() {
       fontSize: 16,
       color: theme.secondaryText,
     }
-  }), [theme]);
+  })
+
+  const styles = getStyles();
+
+  const performSearch = useCallback(
+    debounce(async (query: string, currentPage: number = 1) => {
+      if (!query.trim()) {
+        setSearchResults([]);
+        return;
+      }
+
+      try {
+        setLoading(true);
+        setError(null);
+
+        const response = await fetchMultiSearch(query, currentPage);
+        
+        setSearchResults(currentPage === 1 
+          ? response.results 
+          : [...searchResults, ...response.results]
+        );
+        setPage(response.page);
+        setTotalPages(response.total_pages);
+      } catch (err) {
+        setError('Failed to perform search');
+        console.error(err);
+      } finally {
+        setLoading(false);
+      }
+    }, 500),
+    [searchResults]
+  );
+
+  const handleSearch = (query: string) => {
+    setSearchQuery(query);
+    performSearch(query, 1);
+  };
+
+  const handleLoadMore = () => {
+    if (page < totalPages && !loading) {
+      performSearch(searchQuery, page + 1);
+    }
+  };
+
+  const renderSearchItem = useCallback(({ item }: { item: MultiSearchResult }) => {
+    return <SearchItem item={item} />;
+  }, [theme]);
+
+  const SearchItem = React.memo(({ item }: { item: MultiSearchResult }) => {
+    const theme = useTheme(); // Get the theme context
+    // console.log('Current theme:', theme);
+
+    const getNavigationPath = () => {
+      switch (item.media_type) {
+        case 'movie': return '/movie/[id]';
+        case 'tv': return '/tv-shows/[id]';
+        case 'person': return '/celebrities/[id]';
+        default: 
+          console.warn(`Unknown media type: ${item.media_type}`);
+          return '/celebrities/[id]'; // Fallback to a valid route
+      }
+    };
+
+    const getTitle = () => {
+      switch (item.media_type) {
+        case 'movie': return item.title || 'Unknown Movie';
+        case 'tv': return item.name || 'Unknown TV Show';
+        case 'person': return item.name || 'Unknown Person';
+        default: return 'Unknown';
+      }
+    };
+
+    const getSubtitle = () => {
+      switch (item.media_type) {
+        case 'movie': 
+          return item.release_date 
+            ? `Movie • ${item.release_date.split('-')[0]}` 
+            : 'Movie';
+        case 'tv': 
+          return item.first_air_date 
+            ? `TV Show • ${item.first_air_date.split('-')[0]}` 
+            : 'TV Show';
+        case 'person': return 'Celebrity';
+        default: return '';
+      }
+    };
+
+    const navigationPath = useMemo(() => getNavigationPath(), [item]);
+    const title = useMemo(() => getTitle(), [item]);
+    const subtitle = useMemo(() => getSubtitle(), [item]);
+
+    const handlePress = useCallback(() => {
+      router.push({
+        pathname: navigationPath,
+        params: { id: item.id.toString() },
+      });
+    }, [navigationPath, item.id]);
+
+    return (
+      <TouchableOpacity style={styles.searchItem} onPress={handlePress}>
+        <Image 
+          source={{ 
+            uri: item.poster_path 
+              ? getImageUrl(item.poster_path) 
+              : 'https://via.placeholder.com/342x513.png?text=No+Image' 
+          }}
+          style={styles.searchItemImage}
+          resizeMode="cover"
+        />
+        <View style={styles.searchItemDetails}>
+          <Text style={styles.searchItemTitle} numberOfLines={2}>
+            {title}
+          </Text>
+          <Text style={styles.searchItemSubtitle} numberOfLines={1}>
+            {subtitle}
+          </Text>
+          {item.vote_average !== undefined && (
+            <View style={styles.ratingContainer}>
+              <FontAwesome 
+                name="star" 
+                size={16} 
+                color={theme?.primary || '#FFD700'} 
+              />
+              <Text style={styles.ratingText}>
+                {item.vote_average.toFixed(1)}
+              </Text>
+            </View>
+          )}
+        </View>
+      </TouchableOpacity>
+    );
+  },);
+
+  
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -287,6 +299,9 @@ export default function SearchScreen() {
           keyExtractor={(item, index) => `${item.media_type}-${item.id}-${index}`}
           onEndReached={handleLoadMore}
           onEndReachedThreshold={0.5}
+          // getItemLayout={(data, index) => (
+          //   { length: 120, offset: 120 * index, index }
+          // )}
           ListFooterComponent={
             loading ? (
               <View style={styles.loadingContainer}>

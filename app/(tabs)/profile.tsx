@@ -3,12 +3,12 @@ import { View, Text, StyleSheet, TouchableOpacity, Switch } from 'react-native'
 import { useTheme } from '../../context/ThemeContext'
 
 export default function ProfileScreen() {
-  const { colorScheme, toggleColorScheme } = useTheme()
+  const { colorScheme, toggleColorScheme, theme } = useTheme()
 
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      backgroundColor: colorScheme === 'dark' ? '#000' : '#fff',
+      backgroundColor: theme.background,
       padding: 20,
     },
     settingRow: {
@@ -17,16 +17,16 @@ export default function ProfileScreen() {
       alignItems: 'center',
       marginBottom: 20,
       borderBottomWidth: 1,
-      borderBottomColor: colorScheme === 'dark' ? '#fff' : '#000',
+      borderBottomColor: theme.secondaryText,
       paddingBottom: 10,
     },
     settingText: {
       fontSize: 16,
-      color: colorScheme === 'dark' ? '#fff' : '#000',
+      color: theme.text,
     },
     settingDescription: {
       fontSize: 12,
-      color: colorScheme === 'dark' ? '#fff' : '#000',
+      color: theme.secondaryText,
       opacity: 0.6,
       marginTop: 5,
     },
