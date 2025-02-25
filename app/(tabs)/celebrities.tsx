@@ -128,8 +128,8 @@ export default function CelebritiesScreen() {
         <Image
           source={
             item.profile_path 
-              ? { uri: getPersonImageUrl(item.profile_path) }
-              : require('@/assets/placeholder-profile.png')
+              ? { uri: getPersonImageUrl(item.profile_path) || '' }
+              : { uri: Image.resolveAssetSource(require('@/assets/no-image-placeholder.png')).uri }
           }
           style={styles.celebrityImage}
         />

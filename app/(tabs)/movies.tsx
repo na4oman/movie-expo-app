@@ -78,8 +78,8 @@ export default function MoviesScreen() {
       <Image
         source={
           item.poster_path 
-            ? { uri: getImageUrl(item.poster_path, IMAGE_SIZES.poster.w342) }
-            : require('@/assets/placeholder-poster.png')
+            ? { uri: getImageUrl(item.poster_path, IMAGE_SIZES.poster.w342) || '' }
+            : { uri: Image.resolveAssetSource(require('@/assets/no-image-placeholder.png')).uri }
         }
         style={styles.poster}
       />
