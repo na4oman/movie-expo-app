@@ -13,7 +13,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
+        "foregroundImage": "./assets/images/movie-app-logo.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.atanas_irikev.movieexpoapp"
@@ -35,6 +35,9 @@
         }
       ]
     ],
+    "splash": {
+      "image": "./assets/images/splash-icon.png"
+    },
     "experiments": {
       "typedRoutes": true
     },
