@@ -4,7 +4,7 @@
     "slug": "movie-expo-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/movie-app-logo.png",
+    "icon": "./assets/images/icon.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -13,7 +13,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/movie-app-logo.png",
+        "foregroundImage": "./assets/images/icon.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.atanas_irikev.movieexpoapp"
