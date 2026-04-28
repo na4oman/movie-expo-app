@@ -17,23 +17,23 @@ A comprehensive movie and TV show discovery app built with React Native and Expo
 > **Note**: Add your app screenshots here to showcase the different screens and features
 
 ### Home Screen
-<!-- ![Home Screen](./screenshots/home-screen.png) -->
+![Home Screen](./screenshots/home-screen.png)
 *Add screenshot of the main home/movies screen*
 
 ### TV Shows
-<!-- ![TV Shows](./screenshots/tv-shows.png) -->
+![TV Shows](./screenshots/tv-shows.png)
 *Add screenshot of the TV shows browsing screen*
 
 ### Search
-<!-- ![Search](./screenshots/search.png) -->
+![Search](./screenshots/search.png)
 *Add screenshot of the search functionality*
 
 ### Celebrity Profiles
-<!-- ![Celebrities](./screenshots/celebrities.png) -->
+![Celebrities](./screenshots/celebrities.png)
 *Add screenshot of celebrity profiles screen*
 
 ### User Profile
-<!-- ![Profile](./screenshots/profile.png) -->
+![Profile](./screenshots/profile.png)
 *Add screenshot of user profile and settings*
 
 ## 🚀 Getting Started
