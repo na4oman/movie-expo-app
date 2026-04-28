@@ -4,7 +4,7 @@
     "slug": "movie-expo-app",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/logo-movie.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -13,8 +13,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/images/logo-movie.png",
+        "backgroundColor": "#cc9c6e"
       },
       "package": "com.atanas_irikev.movieexpoapp"
     },
@@ -28,15 +28,15 @@
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
+          "image": "./assets/images/logo-movie.png",
           "imageWidth": 200,
           "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#cc9c6e"
         }
       ]
     ],
     "splash": {
-      "image": "./assets/images/splash-icon.png"
+      "image": "./assets/images/logo-movie.png"
     },
     "experiments": {
       "typedRoutes": true

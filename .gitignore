@@ -29,8 +29,23 @@ yarn-error.*
 .DS_Store
 *.pem
 
-# local env files
+# Environment variables and sensitive data
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 .env*.local
+
+# API keys and secrets
+config/secrets.ts
+config/secrets.js
+secrets.json
+api-keys.json
+
+# Personal configuration files
+personal-config.json
+user-config.json
 
 # typescript
 *.tsbuildinfo

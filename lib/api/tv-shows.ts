@@ -1,5 +1,5 @@
-// TMDB API Configuration
-const TMDB_API_KEY = '6742bab8bafe183c63f0140fe5c63999';
+// TMDB API Configuration - Using secure environment variables
+import { TMDB_API_KEY } from '../config/env';
 
 import { BASE_URL, API_CONFIG, endpoints } from '../config';
 import { MovieListResponse, Movie, MovieDetails, MovieCredits, MovieVideosResponse } from '../types/movie';
