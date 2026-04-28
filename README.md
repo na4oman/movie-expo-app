@@ -14,27 +14,33 @@ A comprehensive movie and TV show discovery app built with React Native and Expo
 
 ## 📱 Screenshots
 
-> **Note**: Add your app screenshots here to showcase the different screens and features
+<div align="center">
 
-### Home Screen
-![Home Screen](./screenshots/home-screen.png)
-*Add screenshot of the main home/movies screen*
+### 🎬 Movies & Home Screen
+<img src="./screenshots/home-screen.png" alt="Home Screen" width="300"/>
 
-### TV Shows
-![TV Shows](./screenshots/tv-shows.png)
-*Add screenshot of the TV shows browsing screen*
+### 📺 TV Shows
+<img src="./screenshots/tv-shows.png" alt="TV Shows" width="300"/>
 
-### Search
-![Search](./screenshots/search.png)
-*Add screenshot of the search functionality*
+### 🔍 Search Functionality
+<img src="./screenshots/search.png" alt="Search" width="300"/>
 
-### Celebrity Profiles
-![Celebrities](./screenshots/celebrities.png)
-*Add screenshot of celebrity profiles screen*
+### ⭐ Celebrity Profiles
+<img src="./screenshots/celebrities.png" alt="Celebrities" width="300"/>
 
-### User Profile
-![Profile](./screenshots/profile.png)
-*Add screenshot of user profile and settings*
+### 👤 User Profile
+<img src="./screenshots/profile.png" alt="Profile" width="300"/>
+
+</div>
+
+<!-- Alternative: Side-by-side layout for multiple screenshots -->
+<!--
+<div align="center">
+  <img src="./screenshots/home-screen.png" alt="Home Screen" width="250"/>
+  <img src="./screenshots/tv-shows.png" alt="TV Shows" width="250"/>
+  <img src="./screenshots/search.png" alt="Search" width="250"/>
+</div>
+-->
 
 ## 🚀 Getting Started
 
